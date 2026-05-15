@@ -30,7 +30,7 @@
 
 ## Descrição
 
-Este laboratório tem como objetivo caracterizar a atividade de code review em repositórios populares hospedados no GitHub. Por meio da API GraphQL do GitHub, serão coletados dados dos **200 repositórios mais populares**, considerando **pull requests com status Merged ou Closed**, que tenham recebido **pelo menos 1 review** e permanecido abertos por **no mínimo 1 hora**, para responder às seguintes questões de pesquisa:
+Este laboratório tem como objetivo caracterizar a atividade de code review em repositórios populares hospedados no GitHub. Por meio da API GraphQL do GitHub, serão coletados dados dos **200 repositórios mais populares**, considerando **pull requests com estado final `MERGED` ou `CLOSED`**, que tenham recebido **pelo menos 1 review** e permanecido abertos por **no mínimo 1 hora**, para responder às seguintes questões de pesquisa:
 
 | # | Questão de Pesquisa |
 |---|---|
@@ -179,7 +179,7 @@ python src/04-analyze-dimension-b.py
 
 ---
 
-## Troubleshooting
+## Solução de Problemas
 
 ### Erro: `GITHUB_TOKEN não encontrado`
 **Problema:** O script não conseguiu localizar o token de autenticação do GitHub.
@@ -190,7 +190,7 @@ python src/04-analyze-dimension-b.py
 3. Ou configure a variável de ambiente: `export GITHUB_TOKEN=ghp_seu_token_aqui`
 4. Se usar `~/.bashrc`, recarregue o terminal ou execute `source ~/.bashrc`
 
-### Erro: `401 Unauthorized` ou `403 Forbidden`
+### Erro: resposta `401` ou `403`
 **Problema:** Token inválido, expirado ou sem permissões adequadas.
 
 **Soluções:**
@@ -210,11 +210,11 @@ source .venv/bin/activate  # Linux/macOS
 pip install -r requirements.txt
 ```
 
-### Erro: `Rate limit exceeded`
+### Erro: limite de requisições excedido
 **Problema:** O limite de requisições da API do GitHub foi excedido.
 
 **Soluções:**
-- Aguarde a janela de rate limit ser renovada
+- Aguarde a renovação da janela de limite de requisições
 - Verifique seu limite atual em: https://api.github.com/rate_limit
 - Reduza a frequência de execução dos scripts de coleta
 - Utilize um token válido para aumentar o limite disponível
