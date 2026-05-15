@@ -1,0 +1,33 @@
+@startuml
+skinparam dpi 240
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam defaultTextAlignment center
+skinparam ArrowColor #667085
+skinparam ArrowThickness 1.3
+skinparam wrapWidth 230
+skinparam nodesep 14
+skinparam ranksep 18
+skinparam roundcorner 22
+skinparam rectangle {
+  BorderColor #D0D5DD
+  FontColor #1F2937
+  FontName DejaVu Sans
+  FontSize 13
+}
+top to bottom direction
+skinparam linetype ortho
+
+rectangle "<size:15><color:#2563EB><&cloud></color></size> <b>① Seleção de Repositórios</b>\n<size:10><color:#475467>Top 200 por estrelas no GitHub\nCritério: ≥100 PRs (MERGED+CLOSED)</color></size>" as S1 #EAF3FF
+rectangle "<size:15><color:#2563EB><&cloud-download></color></size> <b>② Coleta de Pull Requests</b>\n<size:10><color:#475467>GitHub GraphQL API\nAté 200 PRs por repositório</color></size>" as S2 #EAF3FF
+rectangle "<size:15><color:#EA580C><&funnel></color></size> <b>③ Filtragem</b>\n<size:10><color:#475467>Estado: MERGED ou CLOSED\n≥1 review registrado\nDuração ≥1 hora</color></size>" as S3 #FFF3E8
+rectangle "<size:15><color:#16A34A><&database></color></size> <b>④ Extração de Métricas</b>\n<size:10><color:#475467>Tamanho, Tempo, Descrição e Interações</color></size>" as S4 #ECFDF3
+rectangle "<size:15><color:#16A34A><&graph></color></size> <b>⑤ Análise Estatística</b>\n<size:10><color:#475467>Dimensão A: Mann-Whitney U (RQ01-04)\nDimensão B: Spearman ρ (RQ05-08)</color></size>" as S5 #ECFDF3
+rectangle "<size:15><color:#7C3AED><&check></color></size> <b>⑥ Resultados</b>\n<size:10><color:#475467>Confronto com hipóteses</color></size>" as S6 #F4ECFF
+
+S1 -down-> S2
+S2 -down-> S3
+S3 -down-> S4
+S4 -down-> S5
+S5 -down-> S6
+@enduml
