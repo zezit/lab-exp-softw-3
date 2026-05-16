@@ -62,7 +62,14 @@ A coleta ocorre em duas etapas: (1) descoberta dos repositórios elegíveis via 
 
 ![Fluxograma da Metodologia](figures/metodologia_fluxo.png)
 
-## 2.1 Métricas analisadas
+## 2.1 Decisões Relevantes
+
+| ID | Decisão | Justificativa |
+| --- | --- | --- |
+| D1 | Limite de 200 PRs por repositório | Repositórios grandes possuem milhares de PRs; o limite mantém o dataset gerenciável e respeita rate-limits |
+| D2 | Descarte de repositórios sem PRs elegíveis | Dos 200 repositórios iniciais, 12 não produziram nenhum PR após a aplicação dos filtros (≥1 review, duração ≥1h), resultando em 188 repositórios no dataset final |
+
+## 2.2 Métricas analisadas
 
 | Dimensão | Métricas |
 | --- | --- |
@@ -83,10 +90,6 @@ A coleta ocorre em duas etapas: (1) descoberta dos repositórios elegíveis via 
 O dataset final contém **12.955 pull requests** provenientes de **188 repositórios únicos** dentre os 200 inicialmente selecionados. Desse total, **10.053 PRs (77,6%)** terminaram em `MERGED` e **2.902 PRs (22,4%)** em `CLOSED`. Considerando toda a amostra, a mediana de `reviews_count` foi **2,0**.
 
 ![Visão geral do dataset](figures/dataset_overview.png)
-
-As distribuições das métricas indicam forte assimetria à direita: a maior parte dos PRs é relativamente pequena, com poucas interações, enquanto tempo de análise, tamanho de descrição e volume de comentários apresentam caudas longas. Isso reforça a escolha de testes não paramétricos para a análise.
-
-![Distribuição das métricas do dataset](figures/metric_distributions.png)
 
 ## 3.2 Dimensão A — Resultados Consolidados
 
